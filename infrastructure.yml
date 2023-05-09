@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Parameters:
+  AwsChatBotStackName: { Type: String }
+  NodeENV: { Type: String }
+Resources:
+  ExampleFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: handlers/handler-example.handle
+      CodeUri: dist
+      Runtime: nodejs16.x
+      Environment:
+        Variables:
+          ENV_EXAMPLE: "example_env_value"
+  MonitorExampleFunction:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      Dimensions: [{ Name: FunctionName, Value: !Ref ExampleFunction }]
+      EvaluationPeriods: 1
+      Period: 60
+      MetricName: Errors
+      Namespace: AWS/Lambda
+      Statistic: Sum
+      Threshold: 1
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - Fn::ImportValue: !Sub "${AwsChatBotStackName}-ErrorsListenerArn"
+      OKActions:
+        - Fn::ImportValue: !Sub "${AwsChatBotStackName}-ErrorsListenerArn"
