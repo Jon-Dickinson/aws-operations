@@ -29,7 +29,7 @@
     "prettier": "^2.6.2",
     "ts-auto-mock": "^3.6.2",
     "ts-jest": "^28.0.4",
-    "ts-node": "^10.8.1",
+    "ts-node": "^10.9.1",
     "ttypescript": "^1.5.13",
     "typescript": "^4.7.3"
   },
