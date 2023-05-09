@@ -27,7 +27,7 @@
     "jest-mock-extended": "^2.0.6",
     "jest-ts-auto-mock": "^2.1.0",
     "prettier": "^2.6.2",
-    "ts-auto-mock": "^3.6.2",
+    "ts-auto-mock": "^3.6.4",
     "ts-jest": "^28.0.4",
     "ts-node": "^10.8.1",
     "ttypescript": "^1.5.13",
